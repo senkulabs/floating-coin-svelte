@@ -2,7 +2,15 @@
   import Coin from './Coin.svelte';
   import FloatingText from './FloatingText.svelte';
 
+  const CHOCOLATE_COST = 9;
+
   let numOfCoins = $state(0);
+  let numOfChocolates = $state(0);
+
+  function buyChocolate() {
+    numOfCoins = numOfCoins - CHOCOLATE_COST;
+    numOfChocolates = numOfChocolates + 1;
+  }
 
   function handleNumOfCoins() {
     numOfCoins += 2;
@@ -21,6 +29,9 @@
       {/key}
     </div>
     {/if}
+    <button disabled={numOfCoins < CHOCOLATE_COST} class="shop-item" onclick={buyChocolate}>
+      Buy chocolate {numOfChocolates > 0 && (`(${numOfChocolates})`)}
+    </button>
   </main>
   <footer>
     Your coin balance:
