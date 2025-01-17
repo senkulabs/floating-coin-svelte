@@ -1,5 +1,6 @@
 <script>
   import Coin from './Coin.svelte';
+  import FloatingText from './FloatingText.svelte';
 
   let numOfCoins = $state(0);
 
@@ -11,6 +12,15 @@
 <div class="wrapper">
   <main>
     <Coin handleNumOfCoins={handleNumOfCoins} />
+    {#if numOfCoins > 0}
+    <div class="floatingNumWrapper">
+      {#key numOfCoins}
+      <FloatingText>
+        +2
+      </FloatingText>
+      {/key}
+    </div>
+    {/if}
   </main>
   <footer>
     Your coin balance:
