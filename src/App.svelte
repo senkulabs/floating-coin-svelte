@@ -1,17 +1,16 @@
 <script>
-  import './Coin.css';
+  import Coin from './Coin.svelte';
 
   let numOfCoins = $state(0);
+
+  function handleNumOfCoins() {
+    numOfCoins += 2;
+  }
 </script>
 
 <div class="wrapper">
   <main>
-    <div class="coin-wrapper">
-      <button class="coin" onclick={() => numOfCoins += 2}>
-        <span class="visually-hidden">Add 2 coin</span>
-        <img class="coin-image" alt="" src="https://sandpack-bundler.vercel.app/img/toonie.png" />
-      </button>
-    </div>
+    <Coin handleNumOfCoins={handleNumOfCoins} />
   </main>
   <footer>
     Your coin balance:
