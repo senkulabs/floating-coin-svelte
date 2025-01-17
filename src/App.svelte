@@ -7,6 +7,10 @@
   let numOfCoins = $state(0);
   let numOfChocolates = $state(0);
 
+  // We calculate how much coin user has wasted by
+  // adding the value of number of chocolates to their current coin balance:
+  const totalCoinsWasted = $derived(numOfCoins + numOfChocolates * CHOCOLATE_COST);
+
   function buyChocolate() {
     numOfCoins = numOfCoins - CHOCOLATE_COST;
     numOfChocolates = numOfChocolates + 1;
@@ -20,9 +24,9 @@
 <div class="wrapper">
   <main>
     <Coin handleNumOfCoins={handleNumOfCoins} />
-    {#if numOfCoins > 0}
+    {#if totalCoinsWasted > 0}
     <div class="floatingNumWrapper">
-      {#key numOfCoins}
+      {#key totalCoinsWasted}
       <FloatingText>
         +2
       </FloatingText>
@@ -30,7 +34,7 @@
     </div>
     {/if}
     <button disabled={numOfCoins < CHOCOLATE_COST} class="shop-item" onclick={buyChocolate}>
-      Buy chocolate {numOfChocolates > 0 && (`(${numOfChocolates})`)}
+      Buy chocolate {numOfChocolates > 0 ? (`(${numOfChocolates})`) : ''}
     </button>
   </main>
   <footer>
