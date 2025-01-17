@@ -6,6 +6,7 @@
 
   let numOfCoins = $state(0);
   let numOfChocolates = $state(0);
+  let floatingTextKey = $state('initial');
 
   function buyChocolate() {
     numOfCoins = numOfCoins - CHOCOLATE_COST;
@@ -14,15 +15,16 @@
 
   function handleNumOfCoins() {
     numOfCoins += 2;
+    floatingTextKey = crypto.randomUUID();
   }
 </script>
 
 <div class="wrapper">
   <main>
     <Coin handleNumOfCoins={handleNumOfCoins} />
-    {#if numOfCoins > 0}
+    {#if floatingTextKey !== 'initial'}
     <div class="floatingNumWrapper">
-      {#key numOfCoins}
+      {#key floatingTextKey}
       <FloatingText>
         +2
       </FloatingText>
