@@ -32,7 +32,7 @@
     </div>
     {/if}
     <button disabled={numOfCoins < CHOCOLATE_COST} class="shop-item" onclick={buyChocolate}>
-      Buy chocolate {numOfChocolates > 0 && (`(${numOfChocolates})`)}
+      Buy chocolate {numOfChocolates > 0 ? (`(${numOfChocolates})`) : ''}
     </button>
   </main>
   <footer>
